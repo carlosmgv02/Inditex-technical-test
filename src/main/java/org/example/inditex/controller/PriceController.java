@@ -1,8 +1,8 @@
 package org.example.inditex.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.example.inditex.entity.Price;
 import org.example.inditex.service.IPriceService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,10 +11,10 @@ import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api/prices")
+@RequiredArgsConstructor
 public class PriceController {
 
-    @Autowired
-    private IPriceService priceService;
+    private final IPriceService priceService;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
