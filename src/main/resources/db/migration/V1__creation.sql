@@ -1,3 +1,16 @@
+DROP TABLE IF EXISTS prices;
+
+CREATE TABLE prices (
+                        id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                        brand_id INT NOT NULL,
+                        start_date TIMESTAMP NOT NULL,
+                        end_date TIMESTAMP NOT NULL,
+                        price_list INT NOT NULL,
+                        product_id BIGINT NOT NULL,
+                        priority INT NOT NULL,
+                        price DECIMAL(19,2) NOT NULL,
+                        curr CHAR(3) NOT NULL
+);
 INSERT INTO prices (brand_id, start_date, end_date, price_list, product_id, priority, price, curr)
 VALUES (1, '2020-06-14 00:00:00', '2020-12-31 23:59:00', 1, 35455, 0, 35.50, 'EUR');
 
