@@ -4,10 +4,10 @@ package org.example.inditex;
 import org.example.inditex.entity.Price;
 import org.example.inditex.exception.PriceNotFoundException;
 import org.example.inditex.repository.IPriceRepository;
+import org.example.inditex.service.IPriceService;
 import org.example.inditex.service.PriceService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,11 +25,12 @@ class PriceServiceTest {
 
     private final IPriceRepository priceRepository = Mockito.mock(IPriceRepository.class);
 
-    @InjectMocks
-    private PriceService priceService;
+    private IPriceService priceService;
 
-    public PriceServiceTest() {
+    @BeforeEach
+    void setup() {
         MockitoAnnotations.openMocks(this);
+        priceService = new PriceService(priceRepository);
     }
 
     @Test

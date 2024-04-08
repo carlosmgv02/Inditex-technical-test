@@ -68,4 +68,5 @@ public class PriceControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.price").value("38.95"));
     }
+
 }

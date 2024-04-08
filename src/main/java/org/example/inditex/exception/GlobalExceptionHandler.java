@@ -13,10 +13,6 @@ import java.util.Map;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(value = {EntityNotFoundException.class})
-    protected ResponseEntity<Object> handleEntityNotFound(EntityNotFoundException ex, WebRequest request) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(getErrorAttributes(ex));
-    }
 
     @ExceptionHandler(value = {PriceNotFoundException.class})
     protected ResponseEntity<Object> handlePriceNotFound(PriceNotFoundException ex, WebRequest request) {
@@ -35,6 +31,8 @@ public class GlobalExceptionHandler {
     protected ResponseEntity<Object> handleGeneralException(Exception ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(getErrorAttributes(ex));
     }
+
+
 
     private Map<String, String> getErrorAttributes(Exception ex) {
         return getErrorAttributes(ex.getMessage());
