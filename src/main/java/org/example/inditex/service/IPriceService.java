@@ -1,6 +1,7 @@
 package org.example.inditex.service;
 
-import org.example.inditex.entity.Price;
+
+import org.example.inditex.model.Price;
 
 import java.time.LocalDateTime;
 

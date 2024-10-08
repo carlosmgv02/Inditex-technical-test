@@ -20,40 +20,39 @@ public class ExceptionHandlerTest {
 
     @Test
     public void priceNotFoundException_ShouldReturnNotFound() throws Exception {
-        mockMvc.perform(get("/api/prices")
-                                .param("date", "2020-06-14T10:00:00")
-                                .param("productId", "99999")
-                                .param("brandId", "1"))
+        mockMvc.perform(get("/prices")
+                        .param("date", "2024-06-14 10:00:00")
+                        .param("productId", "99999")
+                        .param("brandId", "1"))
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.message").value("Price not found"));
     }
 
     @Test
     public void methodArgumentTypeMismatchException_ShouldReturnBadRequest_Date() throws Exception {
-        mockMvc.perform(get("/api/prices")
-                                .param("date", "no-es-una-fecha")
-                                .param("productId", "35455")
-                                .param("brandId", "1"))
+        mockMvc.perform(get("/prices")
+                        .param("date", "no-es-una-fecha")
+                        .param("productId", "35455")
+                        .param("brandId", "1"))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.message").value("Formato de fecha incorrecto. Usa yyyy-MM-dd HH:mm:ss"));
     }
+
     @Test
     public void methodArgumentTypeMismatchException_ShouldReturnBadRequest_Product() throws Exception {
-        mockMvc.perform(get("/api/prices")
-                                .param("date", "2020-06-14T10:00:00")
-                                .param("productId", "prueba")
-                                .param("brandId", "1"))
+        mockMvc.perform(get("/prices")
+                        .param("date", "2020-06-14T10:00:00")
+                        .param("productId", "prueba")
+                        .param("brandId", "1"))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.message").value("Error en el formato del parámetro"));
     }
+
     @Test
     public void generalException_ShouldReturnInternalServerError() throws Exception {
-        mockMvc.perform(get("/api/error"))
-                .andExpect(status().is(404));
+        mockMvc.perform(get("/error"))
+                .andExpect(status().is(500));
     }
-
-
-
 
 
 }
